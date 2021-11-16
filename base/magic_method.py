@@ -22,18 +22,21 @@ class Person:
         self.func = func
         self.count = 0
 
+    # 析构方法，当实例被销毁的时候调用的方法
     def __del__(self):
         print('__del__():', self)
         del self
 
+    # 允许一个类的实例像函数一样被调用：x(a, b) 调用 x.__call__(a, b)
     def __call__(self, *args, **kwargs):
         self.count += 1
         print('__call__():', self, *args, **kwargs)
         if self.func:
             return self.func(*args, **kwargs)
 
-    # def __repr__(self):
-    #     print('__repr__():', self)
+    def __repr__(self):
+        print('__repr__():', self)
+        return "Language[name=" + self.name + "]"
 
     # def __str__(self):
     #     print('__str__():', self)
@@ -73,6 +76,7 @@ if __name__ == '__main__':
     print(type(p))
     print(callable(p))
     p()
+    print(p)
 
     print('*' * 50)
 
