@@ -36,7 +36,7 @@ class Person:
 
     def __repr__(self):
         print('__repr__():', self)
-        return "Language[name=" + self.name + "]"
+        # return "Language[name=" + self.name + "]"
 
     # def __str__(self):
     #     print('__str__():', self)
