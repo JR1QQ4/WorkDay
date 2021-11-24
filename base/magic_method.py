@@ -1,90 +1,64 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
-class Person:
-    instances_created = 0
-    _singleton = None
-
-    # __init__方法中除了self之外定义的参数，都将与__new__方法中除cls参数之外的参数是必须保持一致或者等效
+class BaseMethod:
     def __new__(cls, *args, **kwargs):
-        print("__new__():", cls, args, kwargs)
-        # 如果要得到当前类的实例，应当在当前类中的 __new__() 方法语句中调用当前类的父类的 __new__() 方法
-        if cls._singleton is None:
-            cls._singleton = super().__new__(cls)
-        cls._singleton.number = cls.instances_created
-        cls.instances_created += 1
-        return cls._singleton
+        """
+        使用类创建对象时，底层会自动调用这个方法来完成对象的创建
+        如果方法中没没有创建对象，也没有返回对象，那么最终创建的对象打印为 None
+        一般情况下我们都不会自己去重定义，只有在有特定的需求时才会去用，比如要修改或者控制类创建对象行为时，如实现单例类等等
+        """
+        print("__________new 方法__________")
 
-    # __init__方法中除了self之外定义的参数，都将与__new__方法中除cls参数之外的参数是必须保持一致或者等效
-    def __init__(self, name='', func=None):
-        print("__init__():", self)
-        super(Person, self).__init__()
-        self.name = name
-        self.func = func
-        self.count = 0
-
-    # 析构方法，当实例被销毁的时候调用的方法
-    def __del__(self):
-        print('__del__():', self)
-        del self
-
-    # 允许一个类的实例像函数一样被调用：x(a, b) 调用 x.__call__(a, b)
-    def __call__(self, *args, **kwargs):
-        self.count += 1
-        print('__call__():', self, *args, **kwargs)
-        if self.func:
-            return self.func(*args, **kwargs)
-
-    def __repr__(self):
-        print('__repr__():', self)
-        # return "Language[name=" + self.name + "]"
-
-    # def __str__(self):
-    #     print('__str__():', self)
-    #     return self
-
-    def __bytes__(self):
-        print('__bytes__():', self)
-
-    def __hash__(self):
-        print('__hash__():', self)
-
-    def __bool__(self):
-        print('__bool__():', self)
-
-    def __format__(self, format_spec):
-        print('__format__():', self, format_spec)
+    def __init__(self):
+        print("__________init 方法__________")
 
 
-class Child(Person):
+class SingleMethod:
+    instance = None
+
     def __new__(cls, *args, **kwargs):
-        print('[child]__new__()', cls)
-        return Person.__new__(cls, *args, **kwargs)
+        print("__________new 方法__________")
+        if cls.instance is None:
+            # Python3 下的三种写法
+            # cls.instance = super(SingleMethod, cls).__new__(cls)
+            # cls.instance = super(SingleMethod, cls).__new__(cls, *args, **kwargs)
+            cls.instance = super().__new__(cls)
+        return cls.instance
 
+    def __init__(self):
+        print("__________init 方法__________")
 
-@Person
-def foo():
-    pass
-
-
-for i in range(10):
-    foo()
 
 if __name__ == '__main__':
-    p = Person('Tom')
-    print(p.number, p.name, p.instances_created)
-    print(Person.instances_created)
-    print(type(p))
-    print(callable(p))
-    p()
-    print(p)
+    # a = BaseMethod()  # __________new 方法__________
+    # print(a)  # None
 
-    print('*' * 50)
+    b = SingleMethod()
+    c = SingleMethod()
+    print(id(b), id(c))  # 1901947769800 1901947769800
 
-    c = Child('Jury')
-    print(c.number, c.name, c.instances_created)
-    print(Child.instances_created)
-    print(type(c))
 
-    print('*' * 50)
 
-    print(foo.count)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
