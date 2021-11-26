@@ -30,8 +30,6 @@ class SingleMethod:
 
 
 class SecondMethod:
-    name = '点'
-
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -39,12 +37,17 @@ class SecondMethod:
     def __str__(self):
         return '({},{})'.format(self.x, self.y)
 
-    def distance(self, p2):
-        return ((self.x - p2.x) ** 2 + (self.y - p2.y) ** 2) ** 0.5
 
-    @classmethod
-    def base_point(cls):
-        return cls(0, 0)
+class DelMethod:
+    def __del__(self):
+        print("__________del 方法__________")
+
+
+class CallMethod:
+    count = 0
+
+    def __call__(self, *args, **kwargs):
+        self.count += 1
 
 
 if __name__ == '__main__':
@@ -55,29 +58,13 @@ if __name__ == '__main__':
     # c = SingleMethod()
     # print(id(b), id(c))  # 1901947769800 1901947769800
 
-    d = SecondMethod(2, 2)
-    print(d)
+    # d = SecondMethod(2, 2)
+    # print(d)
 
+    # e = DelMethod()
+    # print(e)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    f = CallMethod()
+    print(f.count)
+    f()
+    print(f.count)
