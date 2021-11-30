@@ -50,6 +50,30 @@ class CallMethod:
         self.count += 1
 
 
+class OtherBaseMethod:
+    s1 = "Hello, World!"
+
+    def __len__(self):
+        print("__len__")
+        return 1
+
+    def __repr__(self):
+        print("__repr__")
+
+    def __str__(self):
+        print("__repr__")
+        return self.s1
+
+    def __bytes__(self):
+        print("__bytes__")
+
+    def __hash__(self):
+        print("__hash__")
+
+    def __bool__(self):
+        print("__bool__")
+
+
 if __name__ == '__main__':
     # a = BaseMethod()  # __________new 方法__________
     # print(a)  # None
@@ -64,7 +88,11 @@ if __name__ == '__main__':
     # e = DelMethod()
     # print(e)
 
-    f = CallMethod()
-    print(f.count)
-    f()
-    print(f.count)
+    # f = CallMethod()
+    # print(f.count)
+    # f()
+    # print(f.count)
+
+    g = OtherBaseMethod()
+    print(len(str(g)))
+    print(len(g))
