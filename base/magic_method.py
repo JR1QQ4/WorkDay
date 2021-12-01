@@ -96,3 +96,6 @@ if __name__ == '__main__':
     g = OtherBaseMethod()
     print(len(str(g)))
     print(len(g))
+
+
+# 休息
