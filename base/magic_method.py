@@ -59,6 +59,7 @@ class OtherBaseMethod:
 
     def __repr__(self):
         print("__repr__")
+        return self.s1
 
     def __str__(self):
         print("__repr__")
@@ -66,12 +67,15 @@ class OtherBaseMethod:
 
     def __bytes__(self):
         print("__bytes__")
+        return self.s1.encode()
 
     def __hash__(self):
         print("__hash__")
+        return 2
 
     def __bool__(self):
         print("__bool__")
+        return False
 
 
 if __name__ == '__main__':
@@ -94,8 +98,9 @@ if __name__ == '__main__':
     # print(f.count)
 
     g = OtherBaseMethod()
-    print(len(str(g)))
-    print(len(g))
-
-
-# 休息
+    # print(str(g))
+    # print(len(g))
+    print(repr(g))
+    print(bytes(g))
+    print(hash(g))
+    print(bool(g))
