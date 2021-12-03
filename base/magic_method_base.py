@@ -77,6 +77,8 @@ class OtherBaseMethod:
         print("__bool__")
         return False
 
+    def __format__(self, format_spec):
+        return format_spec
 
 if __name__ == '__main__':
     # a = BaseMethod()  # __________new 方法__________
@@ -104,3 +106,4 @@ if __name__ == '__main__':
     print(bytes(g))
     print(hash(g))
     print(bool(g))
+    print(format(g, 'format'))
