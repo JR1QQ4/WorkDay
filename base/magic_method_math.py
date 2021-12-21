@@ -46,3 +46,15 @@ class MathMethod:
 
 if __name__ == '__main__':
     a = MathMethod(12)
+    print("a + 3 = {}".format(a + 3))
+    print("a - 3 = {}".format(a - 3))
+    print("a * 3 = {}".format(a * 3))
+    print("a / 3 = {}".format(a / 3))
+    print("a % 3 = {}".format(a % 3))
+    print("a ** 3 = {}".format(a ** 3))
+    print("a << 3 = {}".format(a << 3))
+    print("a >> 3 = {}".format(a >> 3))
+    print("a & 3 = {}".format(a & 3))
+    print("a ^ 3 = {}".format(a ^ 3))
+    print("a | 3 = {}".format(a | 3))
+
