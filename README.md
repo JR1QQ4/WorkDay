@@ -13,6 +13,13 @@
         - 安装：`py -3.7 -m pip install webdrivermanager`
         - 下载对应的驱动到指定目录：`webdrivermanager firefox chrome --linkpath /usr/local/bin`，linkpath 后接保存驱动的地方，前面的 firefox chrome 表示要下载的驱动
 
+## Pycharm 
 
+使用技巧：
+- 设置自己想运行的命令：设置->工具->外部工具
+    - 名称起一个和执行命令相关的
+    - 程序填入执行程序的绝对路径，比如`D:\python37\Scripts\robot.exe`
+    - 参数可以填入一些特殊的标识，比如`-d $ContentRoot$\tmp\ $FilePath$`
+    - 工作目录一般就是 `$ProjectFileDir$`，当前项目的绝对路径
 
 
