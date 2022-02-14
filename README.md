@@ -22,4 +22,20 @@
     - 参数可以填入一些特殊的标识，比如`-d $ContentRoot$\tmp\ $FilePath$`
     - 工作目录一般就是 `$ProjectFileDir$`，当前项目的绝对路径
 
+## CMD
+
+CMD常用命令
+
+- 生成固定大小的文件：`fsutil file createnew .\test.pdf 104857600`，createnew后面接【文件名或绝对路径] + 【文件大小（字节）】，104857600为100M
+
+## SQL SERVER
+
+SQL SERVER 2109
+
+- 判断两个字符串是否相等：
+    - 使用"="判断，不区分大小写：`SELECT CASE WHEN 'a'='A' THEN '相等' ELSE '不相等' END`，结果是相等
+    - 使用CAST或者CONVERT转码的方式，区分大小写：`SELECT CASE WHEN CAST('a' AS varbinary)=CAST('A' AS varbinary) THEN '相等' ELSE '不相等' END`，结果不相等
+    - 比较的时候会自动去除右边的空格：`SELECT CASE WHEN 'a   '='A' THEN '相等' ELSE '不相等' END`，结果相等
+- 使用DATEADD修改时间（格式为'2021-09-28 06:32:10'）的时候，需要转码一次，否则格式不正确
+    - 语句：`UPDATE ... SET samplingtime=CONVERT(varchar(20), cast(DATEADD(DAY, 2, samplingtime)  as datetime), 20) ...`
 
